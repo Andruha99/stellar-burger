@@ -15,9 +15,17 @@ import styles from './app.module.css';
 import { AppHeader, IngredientDetails, OrderInfo } from '@components';
 import { Route, Routes } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route';
+import { useDispatch } from '../../services/store';
+import { useEffect } from 'react';
+import { getIngredients } from '../../services/slices/ingredientsSlice';
 
 const App = () => {
-  console.log(1);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
+
   return (
     <div className={styles.app}>
       <AppHeader />
