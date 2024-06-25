@@ -23,7 +23,6 @@ const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const backgroundLocation = location.state?.background;
 
   const handleCloseModal = () => {
@@ -103,11 +102,16 @@ const App = () => {
           <Route
             path='/ingredients/:id'
             element={
-              <Modal
-                onClose={handleCloseModal}
-                title='Дополнительная информация об ингредиенте'
-              >
+              <Modal onClose={handleCloseModal} title='Детали ингредиента'>
                 <IngredientDetails />
+              </Modal>
+            }
+          />
+          <Route
+            path='/feed/:number'
+            element={
+              <Modal onClose={handleCloseModal} title='Детали заказа'>
+                <OrderInfo />
               </Modal>
             }
           />
