@@ -30,7 +30,7 @@ export const constructorSlice = createSlice({
         payload: { ...ingredient, id: crypto.randomUUID() }
       })
     },
-    deleteItemFromConstructor: (state, action) => {
+    deleteItemFromConstructor: (state, action: PayloadAction<number>) => {
       state.ingredients.splice(action.payload, 1);
     },
     deleteAllFromConstructor: (state) => {
