@@ -18,6 +18,7 @@ import { ProtectedRoute } from '../protected-route';
 import { useDispatch } from '../../services/store';
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/slices/ingredientsSlice';
+import { authChecked, checkUserAuth } from '../../services/slices/userSlice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getIngredients());
+    dispatch(checkUserAuth()).finally(() => dispatch(authChecked()));
   }, [dispatch]);
 
   return (
@@ -38,12 +40,14 @@ const App = () => {
       <AppHeader />
       <Routes location={backgroundLocation || location}>
         <Route path='/' element={<ConstructorPage />} />
-        <Route path='/feed' element={<Feed />} />
-        <Route path='/feed/:number' element={<OrderInfo />} />
+        <Route path='/feed'>
+          <Route index element={<Feed />} />
+          <Route path=':number' element={<OrderInfo />} />
+        </Route>
         <Route
           path='/login'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <Login />
             </ProtectedRoute>
           }
@@ -51,7 +55,7 @@ const App = () => {
         <Route
           path='/register'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <Register />
             </ProtectedRoute>
           }
@@ -59,7 +63,7 @@ const App = () => {
         <Route
           path='/forgot-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ForgotPassword />
             </ProtectedRoute>
           }
@@ -67,7 +71,7 @@ const App = () => {
         <Route
           path='/reset-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ResetPassword />
             </ProtectedRoute>
           }
