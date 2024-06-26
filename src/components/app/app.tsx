@@ -31,11 +31,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    dispatch(checkUserAuth()).finally(() => dispatch(authChecked()));
-  }, [dispatch, authChecked]);
-
-  useEffect(() => {
     dispatch(getIngredients());
+    dispatch(checkUserAuth()).finally(() => dispatch(authChecked()));
   }, [dispatch]);
 
   return (

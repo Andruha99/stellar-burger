@@ -30,8 +30,7 @@ export const ProtectedRoute = ({
     // в случае если объекта location.state?.from нет — а такое может быть, если мы зашли на страницу логина по прямому URL
     // мы сами создаём объект c указанием адреса и делаем переадресацию на главную страницу
     const from = location.state?.from || { pathname: '/' };
-    const backgroundLocation = location.state?.from.state || null;
-    return <Navigate replace to={from} state={{ backgroundLocation }} />;
+    return <Navigate replace to={from} />;
   }
 
   return children;
