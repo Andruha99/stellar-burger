@@ -2,7 +2,10 @@ import { FC, useMemo } from 'react';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { useDispatch, useSelector } from '../../services/store';
-import { getConstructorSelector } from '../../services/slices/constructorSlice';
+import {
+  deleteAllFromConstructor,
+  getConstructorSelector
+} from '../../services/slices/constructorSlice';
 import {
   getOrder,
   getOrderRequest,
@@ -42,6 +45,7 @@ export const BurgerConstructor: FC = () => {
   };
 
   const closeOrderModal = () => {
+    dispatch(deleteAllFromConstructor());
     dispatch(resetOrder());
   };
 

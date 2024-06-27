@@ -34,7 +34,8 @@ export const constructorSlice = createSlice({
       state.ingredients.splice(action.payload, 1);
     },
     deleteAllFromConstructor: (state) => {
-      state = initialState;
+      state.bun = null;
+      state.ingredients = [];
     },
     moveIngredientDown: (state, action: PayloadAction<number>) => {
       const currentItem = state.ingredients[action.payload];
