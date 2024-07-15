@@ -70,7 +70,6 @@ describe('Tests for burger constructor', () => {
 
   it('create and post order', () => {
     cy.wait('@getIngredients');
-    cy.wait('@getUser');
 
     // Собираем бургер.
     cy.get('[data-cy="643d69a5c3f7b9001cfa093c"]').contains('Добавить').click();
@@ -79,5 +78,17 @@ describe('Tests for burger constructor', () => {
     // Вызываем клик по кнопке «Оформить заказ».
     cy.get('button').contains('Оформить заказ').click();
     cy.wait('@postOrder');
+
+    // Проверяется, что модальное окно открылось и номер заказа верный.
+    const orderModal = cy.get('[data-cy="modal"]');
+    orderModal.contains('45817');
+
+    // Закрывается модальное окно и проверяется успешность закрытия.
+    orderModal.get('[data-cy="closeButton"]').click();
+    orderModal.should('not.exist');
+
+    // Проверяется, что конструктор пуст.
+    cy.contains('Выберите булки');
+    cy.contains('Выберите начинку');
   });
 });
