@@ -1,15 +1,21 @@
-describe('проверяем доступность приложения', function () {
-  it('сервис должен быть доступен по адресу localhost:4000', function () {
-    cy.visit('http://localhost:4000');
-  });
-});
-
 describe('Tests for burger constructor', () => {
   beforeEach(() => {
     cy.visit('http://localhost:4000');
+
     cy.intercept('GET', 'api/ingredients', {
       fixture: 'ingredients.json'
     }).as('getIngredients');
+
+    cy.intercept('GET', '/api/auth/user', {
+      fixture: 'user.json'
+    }).as('getUser');
+
+    cy.intercept('POST', 'api/orders', {
+      fixture: 'order.json'
+    }).as('postOrder');
+
+    localStorage.setItem('refreshToken', 'testRefreshToken123');
+    cy.setCookie('accessToken', 'testAccessToken123');
   });
 
   it('add ingredient to constructor', () => {
@@ -58,5 +64,20 @@ describe('Tests for burger constructor', () => {
     cy.get('[data-cy="modalOverlay"]').click({ force: true });
 
     ingredientModal.should('not.exist');
+  });
+
+  // Создание заказа
+
+  it('create and post order', () => {
+    cy.wait('@getIngredients');
+    cy.wait('@getUser');
+
+    // Собираем бургер.
+    cy.get('[data-cy="643d69a5c3f7b9001cfa093c"]').contains('Добавить').click();
+    cy.get('[data-cy="643d69a5c3f7b9001cfa0941"]').contains('Добавить').click();
+
+    // Вызываем клик по кнопке «Оформить заказ».
+    cy.get('button').contains('Оформить заказ').click();
+    cy.wait('@postOrder');
   });
 });
