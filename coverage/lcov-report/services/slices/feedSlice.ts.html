@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for services/slices/constructorSlice.ts</title>
+    <title>Code coverage report for services/slices/feedSlice.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> constructorSlice.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> feedSlice.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">98.52% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>67/68</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>1/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">98.52% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>67/68</span>
+                <span class='fraction'>62/62</span>
             </div>
         
             
@@ -125,13 +125,7 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -154,7 +148,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -194,79 +187,68 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { PayloadAction, createSlice, nanoid } from '@reduxjs/toolkit';
-import { TConstructorIngredient, TIngredient } from '@utils-types';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getFeedsApi } from '../../utils/burger-api';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { TOrder } from '@utils-types';
 &nbsp;
-type TConstructorBurgersState = {
-  bun: TConstructorIngredient | null;
-  ingredients: TConstructorIngredient[];
+type TFeedState = {
+  allOrders: TOrder[];
+  feedLoading: boolean;
+  burgersReady: number;
+  todayBurgersReady: number;
+  error: string | null;
 };
 &nbsp;
-export const initialState: TConstructorBurgersState = {
-  bun: null,
-  ingredients: []
+export const initialState: TFeedState = {
+  allOrders: [],
+  feedLoading: false,
+  burgersReady: 0,
+  todayBurgersReady: 0,
+  error: null
 };
 &nbsp;
-export const constructorSlice = createSlice({
-  name: 'burgerConstructor',
+export const getFeed = createAsyncThunk(
+  'feed/getFeed',
+  async () =&gt; await getFeedsApi()
+);
+&nbsp;
+export const feedSlice = createSlice({
+  name: 'feed',
   initialState,
+  reducers: {},
   selectors: {
-    getConstructorSelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state</span>
+    getFeedSelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>allOrders,
+    getTotalBurgersReadySelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>burgersReady,
+    getTotalBurgersReadyTodaySelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>todayBurgersReady,
+    getFeedLoadingStatusSelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>feedLoading
   },
-  reducers: {
-    addToConstructor: {
-      reducer: (state, action: PayloadAction&lt;TConstructorIngredient&gt;) =&gt; {
-        if (action.payload.type === 'bun') <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >          state.bun = action.payload;</span>
-        } else {
-          state.ingredients.push(action.payload);
-        }
-      },
-      prepare: (ingredient: TIngredient) =&gt; ({
-        payload: { ...ingredient, id: nanoid() }
+  extraReducers: (builder) =&gt; {
+    builder
+      .addCase(getFeed.pending, (state) =&gt; {
+        state.feedLoading = true;
+        state.error = null;
       })
-    },
-    deleteItemFromConstructor: (state, action: PayloadAction&lt;number&gt;) =&gt; {
-      state.ingredients.splice(action.payload, 1);
-    },
-    deleteAllFromConstructor: (state) =&gt; {
-      state.bun = null;
-      state.ingredients = [];
-    },
-    moveIngredientDown: (state, action: PayloadAction&lt;number&gt;) =&gt; {
-      const currentItem = state.ingredients[action.payload];
-      const nextItem = state.ingredients[action.payload + 1];
-&nbsp;
-      state.ingredients.splice(action.payload, 2, nextItem, currentItem);
-    },
-    moveIngredientUp: (state, action: PayloadAction&lt;number&gt;) =&gt; {
-      const currentItem = state.ingredients[action.payload];
-      const previousItem = state.ingredients[action.payload - 1];
-&nbsp;
-      state.ingredients.splice(
-        action.payload - 1,
-        2,
-        currentItem,
-        previousItem
-      );
-    }
+      .addCase(getFeed.rejected, (state, action) =&gt; {
+        state.feedLoading = false;
+        state.error = action.error.message as string;
+      })
+      .addCase(getFeed.fulfilled, (state, action) =&gt; {
+        state.feedLoading = false;
+        state.allOrders = action.payload.orders;
+        state.burgersReady = action.payload.total;
+        state.todayBurgersReady = action.payload.totalToday;
+      });
   }
 });
 &nbsp;
-export const constructorReducer = constructorSlice.reducer;
-export const { getConstructorSelector } = constructorSlice.selectors;
+export const feedReducer = feedSlice.reducer;
+&nbsp;
 export const {
-  addToConstructor,
-  deleteItemFromConstructor,
-  deleteAllFromConstructor,
-  moveIngredientDown,
-  moveIngredientUp
-} = constructorSlice.actions;
+  getFeedSelector,
+  getTotalBurgersReadySelector,
+  getTotalBurgersReadyTodaySelector,
+  getFeedLoadingStatusSelector
+} = feedSlice.selectors;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
