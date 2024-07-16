@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1721137555793" clover="3.2.0">
-  <project timestamp="1721137555794" name="All files">
-    <metrics statements="699" coveredstatements="478" conditionals="38" coveredconditionals="37" methods="42" coveredmethods="13" elements="779" coveredelements="528" complexity="0" loc="699" ncloc="699" packages="2" files="7" classes="7"/>
+<coverage generated="1721139157706" clover="3.2.0">
+  <project timestamp="1721139157706" name="All files">
+    <metrics statements="742" coveredstatements="521" conditionals="42" coveredconditionals="41" methods="44" coveredmethods="14" elements="828" coveredelements="576" complexity="0" loc="742" ncloc="742" packages="2" files="8" classes="8"/>
     <package name="services.slices">
-      <metrics statements="417" coveredstatements="391" conditionals="38" coveredconditionals="37" methods="24" coveredmethods="13"/>
+      <metrics statements="460" coveredstatements="434" conditionals="42" coveredconditionals="41" methods="26" coveredmethods="14"/>
       <file name="constructorSlice.ts" path="D:\Яндекс практикум\Reps\stellar-burger\src\services\slices\constructorSlice.ts">
         <metrics statements="68" coveredstatements="67" conditionals="7" coveredconditionals="6" methods="7" coveredmethods="6"/>
         <line num="1" count="1" type="stmt"/>
@@ -245,6 +245,52 @@
         <line num="48" count="1" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
+      </file>
+      <file name="userOrdersSlice.ts" path="D:\Яндекс практикум\Reps\stellar-burger\src\services\slices\userOrdersSlice.ts">
+        <metrics statements="43" coveredstatements="43" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
       </file>
       <file name="userSlice.ts" path="D:\Яндекс практикум\Reps\stellar-burger\src\services\slices\userSlice.ts">
         <metrics statements="187" coveredstatements="162" conditionals="18" coveredconditionals="18" methods="5" coveredmethods="3"/>

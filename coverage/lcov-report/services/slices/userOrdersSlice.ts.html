@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for services/slices/orderSlice.ts</title>
+    <title>Code coverage report for services/slices/userOrdersSlice.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> orderSlice.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> userOrdersSlice.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>50/50</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>50/50</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
@@ -106,14 +106,7 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -156,63 +149,49 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { orderBurgerApi } from '../../utils/burger-api';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getOrdersApi } from '../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 &nbsp;
-type TOrderState = {
-  order: TOrder | null;
-  orderRequest: boolean;
+type TUserOrders = {
+  orders: TOrder[];
+  requestStatus: boolean;
 };
 &nbsp;
-export const initialState: TOrderState = {
-  order: null,
-  orderRequest: false
+export const initialState: TUserOrders = {
+  orders: [],
+  requestStatus: false
 };
 &nbsp;
-export const orderBurger = createAsyncThunk(
-  'burder/orderBurger',
-  async (data: string[]) =&gt; await orderBurgerApi(data)
+export const getUserOrders = createAsyncThunk(
+  'userOrders/getUserOrders',
+  async () =&gt; await getOrdersApi()
 );
 &nbsp;
-export const orderSlice = createSlice({
-  name: 'order',
+export const userOrdersSlice = createSlice({
+  name: 'userOrders',
   initialState,
-  reducers: {
-    resetOrder: (state) =&gt; {
-      state.order = null;
-      state.orderRequest = false;
-    }
-  },
+  reducers: {},
   selectors: {
-    getOrderRequest: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>orderRequest,
-    getOrder: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>order
+    getAllUserOrdersSelector: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>orders
   },
   extraReducers: (builder) =&gt; {
     builder
-      .addCase(orderBurger.pending, (state) =&gt; {
-        state.orderRequest = true;
+      .addCase(getUserOrders.pending, (state) =&gt; {
+        state.requestStatus = true;
       })
-      .addCase(orderBurger.rejected, (state) =&gt; {
-        state.orderRequest = false;
+      .addCase(getUserOrders.rejected, (state) =&gt; {
+        state.requestStatus = false;
       })
-      .addCase(orderBurger.fulfilled, (state, action) =&gt; {
-        state.order = action.payload.order;
-        state.orderRequest = false;
+      .addCase(getUserOrders.fulfilled, (state, action) =&gt; {
+        state.orders = action.payload;
+        state.requestStatus = false;
       });
   }
 });
 &nbsp;
-export const orderReducer = orderSlice.reducer;
-export const { resetOrder } = orderSlice.actions;
-export const { getOrderRequest, getOrder } = orderSlice.selectors;
+export const userOrdersReducer = userOrdersSlice.reducer;
+export const { getAllUserOrdersSelector } = userOrdersSlice.selectors;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

@@ -37,7 +37,7 @@ describe('tests for orderSlice', () => {
     });
   });
 
-  it('set feed when orderBurger is fulfilled', () => {
+  it('set order when orderBurger is fulfilled', () => {
     const newState = orderReducer(initialState, {
       type: orderBurger.fulfilled.type,
       payload: { order: mockOrder }
