@@ -46,7 +46,7 @@ describe('tests for feed slice', () => {
     });
   });
 
-  it('set ingredients when getFeed is fulfilled', () => {
+  it('set feed when getFeed is fulfilled', () => {
     const newState = feedReducer(initialState, {
       type: getFeed.fulfilled.type,
       payload: mockFeed
