@@ -1,3 +1,5 @@
+import { setCookie, deleteCookie } from '../../src/utils/cookie';
+
 describe('Tests for burger constructor', () => {
   beforeEach(() => {
     cy.visit('http://localhost:4000');
@@ -15,7 +17,12 @@ describe('Tests for burger constructor', () => {
     }).as('postOrder');
 
     localStorage.setItem('refreshToken', 'testRefreshToken123');
-    cy.setCookie('accessToken', 'testAccessToken123');
+    setCookie('accessToken', 'testAccessToken123');
+  });
+
+  afterEach(() => {
+    localStorage.removeItem('refreshToken');
+    deleteCookie('accessToken');
   });
 
   it('add ingredient to constructor', () => {
