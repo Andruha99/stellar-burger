@@ -57,10 +57,7 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
-      isAuthChecked: false,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: null,
+      ...initialState,
       loginUserRequest: true
     });
   });
@@ -72,11 +69,10 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
       isAuthenticated: true,
-      data: mockRegisterUser,
-      loginUserError: null,
-      loginUserRequest: false
+      data: mockRegisterUser
     });
   });
 
@@ -87,9 +83,8 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
-      isAuthenticated: false,
-      data: null,
       loginUserError: 'Some error',
       loginUserRequest: false
     });
@@ -101,13 +96,7 @@ describe('tests for user slice', () => {
       type: loginUser.pending.type
     });
 
-    expect(newState).toEqual({
-      isAuthChecked: false,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: null,
-      loginUserRequest: true
-    });
+    expect(newState).toEqual({ ...initialState, loginUserRequest: true });
   });
 
   it('set user data when loginUser is fulfilled', () => {
@@ -117,11 +106,10 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
       isAuthenticated: true,
-      data: mockLoginUser,
-      loginUserError: null,
-      loginUserRequest: false
+      data: mockLoginUser
     });
   });
 
@@ -132,11 +120,9 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: 'Some error',
-      loginUserRequest: false
+      loginUserError: 'Some error'
     });
   });
 
@@ -146,13 +132,7 @@ describe('tests for user slice', () => {
       type: checkUserAuth.pending.type
     });
 
-    expect(newState).toEqual({
-      isAuthChecked: false,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: null,
-      loginUserRequest: true
-    });
+    expect(newState).toEqual({ ...initialState, loginUserRequest: true });
   });
 
   it('set user data when checkUserAuth is fulfilled', () => {
@@ -162,11 +142,10 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
       isAuthenticated: true,
-      data: mockUser,
-      loginUserError: null,
-      loginUserRequest: false
+      data: mockUser
     });
   });
 
@@ -177,11 +156,9 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: 'Some error',
-      loginUserRequest: false
+      loginUserError: 'Some error'
     });
   });
 
@@ -192,10 +169,7 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
-      isAuthChecked: false,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: null,
+      ...initialState,
       loginUserRequest: true
     });
   });
@@ -210,11 +184,10 @@ describe('tests for user slice', () => {
     );
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
       isAuthenticated: true,
-      data: mockUpdateUser,
-      loginUserError: null,
-      loginUserRequest: false
+      data: mockUpdateUser
     });
   });
 
@@ -225,11 +198,9 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: 'Some error',
-      loginUserRequest: false
+      loginUserError: 'Some error'
     });
   });
 
@@ -239,13 +210,7 @@ describe('tests for user slice', () => {
       type: logoutUser.pending.type
     });
 
-    expect(newState).toEqual({
-      isAuthChecked: false,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: null,
-      loginUserRequest: true
-    });
+    expect(newState).toEqual({ ...initialState, loginUserRequest: true });
   });
 
   it('set new user data when logoutUser is fulfilled', () => {
@@ -257,11 +222,9 @@ describe('tests for user slice', () => {
     );
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
-      isAuthenticated: true,
-      data: null,
-      loginUserError: null,
-      loginUserRequest: false
+      isAuthenticated: true
     });
   });
 
@@ -272,11 +235,9 @@ describe('tests for user slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       isAuthChecked: true,
-      isAuthenticated: false,
-      data: null,
-      loginUserError: 'Some error',
-      loginUserRequest: false
+      loginUserError: 'Some error'
     });
   });
 });

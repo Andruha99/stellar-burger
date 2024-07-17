@@ -31,10 +31,7 @@ describe('tests for orderSlice', () => {
       type: orderBurger.pending.type
     });
 
-    expect(newState).toEqual({
-      order: null,
-      orderRequest: true
-    });
+    expect(newState).toEqual({ ...initialState, orderRequest: true });
   });
 
   it('set order when orderBurger is fulfilled', () => {
@@ -43,10 +40,7 @@ describe('tests for orderSlice', () => {
       payload: { order: mockOrder }
     });
 
-    expect(newState).toEqual({
-      order: mockOrder,
-      orderRequest: false
-    });
+    expect(newState).toEqual({ ...initialState, order: mockOrder });
   });
 
   it('set error when orderBurger is rejected', () => {
@@ -54,9 +48,6 @@ describe('tests for orderSlice', () => {
       type: orderBurger.rejected.type
     });
 
-    expect(newState).toEqual({
-      order: null,
-      orderRequest: false
-    });
+    expect(newState).toEqual(initialState);
   });
 });

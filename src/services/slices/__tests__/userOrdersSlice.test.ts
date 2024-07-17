@@ -32,10 +32,7 @@ describe('tests for userOrders slice', () => {
       type: getUserOrders.pending.type
     });
 
-    expect(newState).toEqual({
-      orders: [],
-      requestStatus: true
-    });
+    expect(newState).toEqual({ ...initialState, requestStatus: true });
   });
 
   it('set user orders feed when getUserOrders is fulfilled', () => {
@@ -44,10 +41,7 @@ describe('tests for userOrders slice', () => {
       payload: mockUserOrders
     });
 
-    expect(newState).toEqual({
-      orders: mockUserOrders,
-      requestStatus: false
-    });
+    expect(newState).toEqual({ ...initialState, orders: mockUserOrders });
   });
 
   it('set false when getUserOrders is rejected', () => {
@@ -55,9 +49,6 @@ describe('tests for userOrders slice', () => {
       type: getUserOrders.rejected.type
     });
 
-    expect(newState).toEqual({
-      orders: [],
-      requestStatus: false
-    });
+    expect(newState).toEqual(initialState);
   });
 });

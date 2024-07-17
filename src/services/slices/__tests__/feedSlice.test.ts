@@ -37,13 +37,7 @@ describe('tests for feed slice', () => {
       type: getFeed.pending.type
     });
 
-    expect(newState).toEqual({
-      allOrders: [],
-      feedLoading: true,
-      burgersReady: 0,
-      todayBurgersReady: 0,
-      error: null
-    });
+    expect(newState).toEqual({ ...initialState, feedLoading: true });
   });
 
   it('set feed when getFeed is fulfilled', () => {
@@ -53,11 +47,10 @@ describe('tests for feed slice', () => {
     });
 
     expect(newState).toEqual({
+      ...initialState,
       allOrders: mockFeed.orders,
-      feedLoading: false,
       burgersReady: mockFeed.total,
-      todayBurgersReady: mockFeed.totalToday,
-      error: null
+      todayBurgersReady: mockFeed.totalToday
     });
   });
 
@@ -67,12 +60,6 @@ describe('tests for feed slice', () => {
       error: { message: 'Some error' }
     });
 
-    expect(newState).toEqual({
-      allOrders: [],
-      feedLoading: false,
-      burgersReady: 0,
-      todayBurgersReady: 0,
-      error: 'Some error'
-    });
+    expect(newState).toEqual({ ...initialState, error: 'Some error' });
   });
 });

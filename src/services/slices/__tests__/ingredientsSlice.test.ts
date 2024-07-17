@@ -40,11 +40,7 @@ describe('tests for ingredients slice', () => {
       type: getIngredients.pending.type
     });
 
-    expect(newState).toEqual({
-      ingredients: [],
-      ingredientsLoading: true,
-      error: null
-    });
+    expect(newState).toEqual({ ...initialState, ingredientsLoading: true });
   });
 
   it('set ingredients when getIngredients is fulfilled', () => {
@@ -53,11 +49,7 @@ describe('tests for ingredients slice', () => {
       payload: mockIngredients
     });
 
-    expect(newState).toEqual({
-      ingredients: mockIngredients,
-      ingredientsLoading: false,
-      error: null
-    });
+    expect(newState).toEqual({ ...initialState, ingredients: mockIngredients });
   });
 
   it('set error when getIngredients is rejected', () => {
@@ -67,8 +59,7 @@ describe('tests for ingredients slice', () => {
     });
 
     expect(newState).toEqual({
-      ingredients: [],
-      ingredientsLoading: false,
+      ...initialState,
       error: 'Some error'
     });
   });

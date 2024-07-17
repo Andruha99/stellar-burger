@@ -1,8 +1,11 @@
 import { setCookie, deleteCookie } from '../../src/utils/cookie';
 
+const mockBun = '[data-cy="643d69a5c3f7b9001cfa093c"]';
+const mockIngredient = '[data-cy="643d69a5c3f7b9001cfa0941"]';
+
 describe('Tests for burger constructor', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4000');
+    cy.visit('/');
 
     cy.intercept('GET', 'api/ingredients', {
       fixture: 'ingredients.json'
@@ -28,19 +31,17 @@ describe('Tests for burger constructor', () => {
   it('add ingredient to constructor', () => {
     cy.wait('@getIngredients');
 
-    const bun = cy.get('[data-cy="643d69a5c3f7b9001cfa093c"]');
+    const bun = cy.get(mockBun);
     bun.contains('Добавить').click();
 
-    const ingredient = cy.get('[data-cy="643d69a5c3f7b9001cfa0941"]');
+    const ingredient = cy.get(mockIngredient);
     ingredient.contains('Добавить').click();
   });
 
   it('open ingredients modal', () => {
     cy.wait('@getIngredients');
 
-    const ingredientModal = cy
-      .get('[data-cy="643d69a5c3f7b9001cfa0941"]')
-      .click();
+    const ingredientModal = cy.get(mockIngredient).click();
 
     ingredientModal.get('h3').contains('Детали ингредиента');
   });
@@ -48,9 +49,7 @@ describe('Tests for burger constructor', () => {
   it('close modal by chrest click', () => {
     cy.wait('@getIngredients');
 
-    const ingredientModal = cy
-      .get('[data-cy="643d69a5c3f7b9001cfa0941"]')
-      .click();
+    const ingredientModal = cy.get(mockIngredient).click();
 
     ingredientModal.should('exist');
 
@@ -62,9 +61,7 @@ describe('Tests for burger constructor', () => {
   it('close modal by overlay click', () => {
     cy.wait('@getIngredients');
 
-    const ingredientModal = cy
-      .get('[data-cy="643d69a5c3f7b9001cfa0941"]')
-      .click();
+    const ingredientModal = cy.get(mockIngredient).click();
 
     ingredientModal.should('exist');
 
@@ -79,8 +76,8 @@ describe('Tests for burger constructor', () => {
     cy.wait('@getIngredients');
 
     // Собираем бургер.
-    cy.get('[data-cy="643d69a5c3f7b9001cfa093c"]').contains('Добавить').click();
-    cy.get('[data-cy="643d69a5c3f7b9001cfa0941"]').contains('Добавить').click();
+    cy.get(mockBun).contains('Добавить').click();
+    cy.get(mockIngredient).contains('Добавить').click();
 
     // Вызываем клик по кнопке «Оформить заказ».
     cy.get('button').contains('Оформить заказ').click();
