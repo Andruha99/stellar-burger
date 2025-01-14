@@ -1,4 +1,4 @@
-import { orderBurgerApi } from '@api';
+import { orderBurgerApi } from '../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '@utils-types';
 
@@ -7,7 +7,7 @@ type TOrderState = {
   orderRequest: boolean;
 };
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   order: null,
   orderRequest: false
 };
